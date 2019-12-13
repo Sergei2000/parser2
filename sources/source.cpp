@@ -23,16 +23,12 @@ enum jsonEnums {
 
 class Json {
 public:
-    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РёР· СЃС‚СЂРѕРєРё, СЃРѕРґРµСЂР¶Р°С‰РµР№ Json-РґР°РЅРЅС‹Рµ.
     Json(const std::string &s) {
         fileContent = s;
     }
 
 private:
-    Json(void) {
-
-    }
-
+    Json(void) {}
     void deleteUseless() {
         bool filedFlag = false;
         bool filedBoolFlag = false;
@@ -78,7 +74,6 @@ private:
     }
 
 public:
-    // РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РґР°РЅРЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ СЃРѕРґРµСЂР¶РёС‚ РІ СЃРµР±Рµ JSON-РјР°СЃСЃРёРІ. РРЅР°С‡Рµ false.
     bool is_array() const {
         for (unsigned long i = 0; i < fileContent.size(); i++) {
             if (fileContent[i] == '[') {
@@ -90,8 +85,6 @@ public:
         }
         return false;
     }
-
-    // РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РґР°РЅРЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ СЃРѕРґРµСЂР¶РёС‚ РІ СЃРµР±Рµ JSON-РѕР±СЉРµРєС‚. РРЅР°С‡Рµ false.
     bool is_object() const {
         for (unsigned long i = 0; i < fileContent.size(); i++) {
             char c = fileContent[i];
@@ -145,10 +138,7 @@ private:
                 continue;
             }
             if (c == '"' && flagStartReading) {
-
-
                 return number;
-
             }
         }
         return -1;
@@ -182,7 +172,6 @@ private:
                 break;
             }
         }
-
         return number;
     }
 
