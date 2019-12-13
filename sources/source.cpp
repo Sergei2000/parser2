@@ -2,7 +2,6 @@
 
 #include <header.hpp>
 #include <iostream>
-#include <fstream>
 #include <any>
 #include <vector>
 #include <string>
@@ -10,7 +9,11 @@
 #include <sstream>
 #include <fstream>
 
-using namespace std;
+using  std::map;
+using  std::vector;
+using  std::fstream;
+using  std::cout;
+using  std::any;
 
 enum jsonEnums {
     Array,
