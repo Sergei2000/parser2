@@ -14,6 +14,7 @@ using  std::vector;
 using  std::fstream;
 using  std::cout;
 using  std::any;
+using  std::string;
 
 enum jsonEnums {
     Array,
@@ -79,7 +80,7 @@ private:
 
 public:
     bool is_array() const {
-        for (unsigned long i = 0; i < fileContent.size(); i++) {
+        for (int i = 0; i < fileContent.size(); i++) {
             if (fileContent[i] == '[') {
                 return true;
             }
@@ -90,7 +91,7 @@ public:
         return false;
     }
     bool is_object() const {
-        for (unsigned long i = 0; i < fileContent.size(); i++) {
+        for (int i = 0; i < fileContent.size(); i++) {
             char c = fileContent[i];
             if (fileContent[i] == '{') {
                 return true;
@@ -120,7 +121,7 @@ private:
         return cursPosition;
     }
 
-    int getKey(unsigned long number, string object) {
+    int getKey(int number, string object) {
         bool flagFinishReading = false;
         bool flagStartReading = false;
         while (number < object.size()) {
@@ -147,8 +148,7 @@ private:
         return -1;
     }
 
-    int getValue(unsigned long number, string object) {
-
+    int getValue(int number, string object) {
         switch (getType(number, object)) {
             case Object: {
                 number = getObject(number, object);
@@ -178,7 +178,7 @@ private:
         return number;
     }
 
-    int getType(unsigned long number, string object) {
+    int getType(int number, string object) {
         int typeValue = -1;
         if (number >= object.size()) {
             return typeValue;
@@ -216,8 +216,8 @@ private:
         return typeValue;
     }
 
-    bool is_object(unsigned long number, string object) {
-        for (unsigned long i = number; i <= object.size(); i++) {
+    bool is_object(int number, string object) {
+        for (int i = number; i <= object.size(); i++) {
             char c = object[i];
             if (c == '"' || c == '[' || c == ']' || c == ',' || c == 'f' || c == 't' || (c >= '0' && c <= '9')) {
                 return false;
@@ -229,9 +229,9 @@ private:
         return false;
     }
 
-    bool is_array(unsigned long number, string object) {
+    bool is_array(int number, string object) {
 
-        for (unsigned long i = number; i <= object.size(); i++) {
+        for (int i = number; i <= object.size(); i++) {
             char c = object[i];
             if (c == '"' || c == '{' || c == '}' || c == ',' || c == 'f' || c == 't' || (c >= '0' && c <= '9')) {
                 return false;
@@ -243,8 +243,8 @@ private:
         return false;
     }
 
-    bool is_string(unsigned long number, string object) {
-        for (unsigned long i = number; i <= object.size(); i++) {
+    bool is_string(int number, string object) {
+        for (int i = number; i <= object.size(); i++) {
             char c = object[i];
             if (c == '[' || c == '{' || c == '}' || c == ',' || c == 'f' || c == 't' || (c >= '0' && c <= '9')) {
                 return false;
@@ -256,8 +256,8 @@ private:
         return false;
     }
 
-    bool is_number(unsigned long number, string object) {
-        for (unsigned long i = number; i <= object.size(); i++) {
+    bool is_number(int number, string object) {
+        for (int i = number; i <= object.size(); i++) {
             char c = object[i];
             if (c == '[' || c == '{' || c == '}' || c == ',' || c == 'f' || c == 't' || c == '"') {
                 return false;
@@ -269,8 +269,8 @@ private:
         return false;
     }
 
-    bool int_or_float(unsigned long number, string object) {
-        for (unsigned long i = number; i <= object.size(); i++) {
+    bool int_or_float(int number, string object) {
+        for (int i = number; i <= object.size(); i++) {
             char c = object[i];
             if (c == '.') {
                 return false;
@@ -282,8 +282,8 @@ private:
         return true;
     }
 
-    bool is_bool(unsigned long number, string object) {
-        for (unsigned long i = number; i <= object.size(); i++) {
+    bool is_bool(int number, string object) {
+        for (int i = number; i <= object.size(); i++) {
             char c = object[i];
             if (c == '[' || c == '{' || c == '}' || c == ',' || (c >= '0' && c <= '9') || c == '"') {
                 return false;
