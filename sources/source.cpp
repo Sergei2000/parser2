@@ -26,7 +26,7 @@ enum jsonEnums {
 
 class Json {
 public:
-    Json(const std::string &s) {
+    explicit Json(const std::string &s) {
         fileContent = s;
     }
 
@@ -36,9 +36,10 @@ private:
         bool filedFlag = false;
         bool filedBoolFlag = false;
         string s;
-        for (unsigned long i = 0; i < fileContent.size(); i++) {
+        for (int i = 0; i < fileContent.size(); i++) {
             char c = fileContent[i];
-            if ((c == '"' || c == '{' || c == '}' || c == '[' || c == ']' || c == ',' || c == ':') &&
+            if ((c == '"' || c == '{' || c == '}' ||
+            c == '[' || c == ']' || c == ',' || c == ':') &&
                 filedFlag == false) {
                 s.push_back(c);
                 if (c == '"') {
@@ -107,7 +108,6 @@ private:
             return -1;
         }
         int cursPosition = number;
-
         if (typeFlag == Object) {
             cursPosition = getKey(number, object);
             if (cursPosition == -1) {
